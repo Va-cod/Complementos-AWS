@@ -18,7 +18,7 @@ Se verifica mediante el usuario administrador la existencia del nuevo usuario cr
   ```
 - **Evidencia:**
 
-  ![Paso 3 - Listar usuarios IAM](evidencia/paso_03.png)
+  ![Paso 3 - Listar usuarios IAM](evidencias/paso_03.png)
 
 - **Detalles observados:**
   - Se lista el usuario inicial `Carlos-Sainz` con ARN `arn:aws:iam::382072535278:user/Carlos-Sainz` e ID único `AIDAVR5KMHDXJBMSLLQTI`.
@@ -36,7 +36,7 @@ Se valida el cambio de nombre a `lector-carlos-sainz` y la adición de etiquetas
   ```
 - **Evidencia:**
 
-  ![Paso 6 - Consultar usuario renombrado](evidencia/paso_06.png)
+  ![Paso 6 - Consultar usuario renombrado](evidencias/paso_06.png)
 
 - **Detalles observados:**
   - El ARN se ha modificado automáticamente para reflejar el nuevo nombre: `arn:aws:iam::382072535278:user/lector-carlos-sainz`.
@@ -55,7 +55,7 @@ Se verifica la asociación de la política administrada de AWS `AmazonEC2ReadOnl
   ```
 - **Evidencia:**
 
-  ![Paso 8 - Listar políticas adjuntas](evidencia/paso_08.png)
+  ![Paso 8 - Listar políticas adjuntas](evidencias/paso_08.png)
 
 - **Detalles observados:**
   - El usuario tiene vinculada la política `arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess`.
@@ -72,7 +72,7 @@ Se ejecuta una consulta a EC2 utilizando el perfil configurado con las credencia
   ```
 - **Evidencia:**
 
-  ![Paso 12 - Consulta exitosa de EC2](evidencia/paso_12.png)
+  ![Paso 12 - Consulta exitosa de EC2](evidencias/paso_12.png)
 
 - **Detalles observados:**
   - La llamada se ejecuta satisfactoriamente retornando `{"Reservations": []}`, comprobando que la política de lectura sobre EC2 está operando correctamente.
@@ -89,7 +89,7 @@ Se intenta listar usuarios de IAM utilizando el perfil del usuario lector para v
   ```
 - **Evidencia:**
 
-  ![Paso 13 - Acceso denegado en IAM](evidencia/paso_13.png)
+  ![Paso 13 - Acceso denegado en IAM](evidencias/paso_13.png)
 
 - **Detalles observados:**
   - La solicitud es bloqueada con error `AccessDenied` debido a que el usuario únicamente tiene permisos para EC2 y no para el servicio IAM, validando el principio de menor privilegio.
@@ -106,7 +106,7 @@ Tras remover la política `AmazonEC2ReadOnlyAccess`, se intenta nuevamente descr
   ```
 - **Evidencia:**
 
-  ![Paso 15 - Operación no autorizada post-revocación](evidencia/paso_15.png)
+  ![Paso 15 - Operación no autorizada post-revocación](evidencias/paso_15.png)
 
 - **Detalles observados:**
   - La llamada falla con el error `UnauthorizedOperation`, lo que constata la revocación inmediata de los privilegios.
@@ -123,7 +123,7 @@ Se comprueba la remoción del usuario de la cuenta tras haber eliminado sus Acce
   ```
 - **Evidencia:**
 
-  ![Paso 19 - Verificación de usuario eliminado](evidencia/paso_19.png)
+  ![Paso 19 - Verificación de usuario eliminado](evidencias/paso_19.png)
 
 - **Detalles observados:**
   - El usuario `lector-carlos-sainz` ya no figura en el directorio de identidades IAM de la cuenta.
